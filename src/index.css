@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #ff8600; /* UT Orange */
+  --color-brand-hover: #ffb703; /* Selective Yellow */
+  --color-brand-secondary: #219ebc; /* Blue Green */
+  --color-brand-light: #8ecae6; /* Sky Blue */
+  --color-brand-dark: #023047; /* Prussian Blue */
+}
+
+.app {
+  /* background-color: var(--color-brand-light); */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

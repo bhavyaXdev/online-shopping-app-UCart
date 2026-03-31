@@ -78,7 +78,7 @@ const EthnicWearSection = () => {
             whileHover={{ y: -5 }}
             className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group flex flex-col h-full cursor-pointer"
         >
-            <div className="relative overflow-hidden bg-gray-50 h-[140px] sm:h-[180px] md:h-[220px] lg:h-[240px]">
+            <div className="relative overflow-hidden bg-gray-50 h-[120px] sm:h-[150px] md:h-[180px] lg:h-[200px]">
                 <img
                     src={product.image}
                     alt={product.name}
@@ -96,8 +96,8 @@ const EthnicWearSection = () => {
                     </button>
                 </div>
 
-                {/* Mobile & Tablet Rating Badge on Image */}
-                <div className="absolute bottom-1.5 left-1.5 lg:hidden bg-white/90 backdrop-blur-sm px-1.5 py-[2px] rounded-sm flex items-center shadow-sm">
+                {/* Rating Badge on Image */}
+                <div className="absolute bottom-1.5 left-1.5 bg-white/90 backdrop-blur-sm px-1.5 py-[2px] rounded-sm flex items-center shadow-sm">
                     <span className="text-gray-800 text-[8px] font-bold mr-0.5">{product.rating}</span>
                     <Star size={8} className="text-yellow-500" fill="currentColor" />
                     <div className="w-[1px] h-2 bg-gray-300 mx-1"></div>
@@ -111,15 +111,7 @@ const EthnicWearSection = () => {
                 <h3 className="text-gray-800 font-bold text-[12px] md:text-[13px] lg:text-sm mb-1.5 line-clamp-2 leading-tight flex-1">
                     {product.name}
                 </h3>
-                {/* Desktop Rating Inline */}
-                <div className="hidden lg:flex items-center gap-1 mb-2 lg:mb-3">
-                    <div className="flex items-center text-yellow-500">
-                        <Star size={10} className="md:w-3 md:h-3" fill="currentColor" />
-                        <span className="text-gray-700 text-[9px] md:text-[11px] font-bold ml-0.5">{product.rating}</span>
-                    </div>
-                    <span className="text-gray-400 text-[8px] md:text-[10px]">({product.reviews})</span>
-                </div>
-                <div className="flex items-end justify-between mt-auto">
+                <div className="flex items-end justify-between mt-auto pt-1">
                     <div className="flex flex-col">
                         <span className="text-[13px] md:text-base lg:text-lg font-black text-slate-800 leading-none">
                             {product.price}
@@ -134,10 +126,10 @@ const EthnicWearSection = () => {
                             <Heart size={14} strokeWidth={2} />
                         </button>
                         
-                        <button className="hidden lg:block bg-[#8B5E3C] text-white px-3 py-2 rounded-lg text-[10px] font-bold hover:bg-gray-900 transition-colors uppercase shadow-sm whitespace-nowrap">
+                        <button className="hidden lg:block bg-slate-900 text-white px-3 py-2 rounded-lg text-[10px] font-bold hover:bg-brand-primary transition-colors uppercase shadow-sm whitespace-nowrap">
                             Buy Now
                         </button>
-                        <button className="flex items-center justify-center md:hidden lg:flex bg-gray-900 text-white p-1.5 lg:p-2 rounded-md lg:rounded-lg hover:bg-brand-primary transition-colors focus:outline-none shadow-sm">
+                        <button className="flex items-center justify-center md:hidden lg:flex bg-slate-900 text-white p-1.5 lg:p-2 rounded-md lg:rounded-lg hover:bg-brand-primary transition-colors focus:outline-none shadow-sm">
                             <ShoppingCart size={14} className="lg:w-4 lg:h-4" />
                         </button>
                     </div>

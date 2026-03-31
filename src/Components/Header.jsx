@@ -134,9 +134,9 @@ const Header = () => {
       </div>
 
       {/* Category Navigation - Desktop/Tablet */}
-      <div className={`hidden md:block w-full bg-white/10 border-t py-1 border-gray-100`}>
+      <div className={`hidden md:block w-full bg-white/10 border-t border-gray-100`}>
         <div className="container mx-auto px-4 md:px-6 lg:px-8 ">
-          <ul className="flex items-center justify-between h-10 overflow-x-auto no-scrollbar space-x-6 text-sm font-medium text-gray-600">
+          <ul className="flex items-center justify-between h-8 overflow-x-auto no-scrollbar space-x-6 text-sm font-medium text-gray-600">
             {[
               "Women's Fashion",
               "Men's Fashion",

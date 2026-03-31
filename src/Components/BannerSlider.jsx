@@ -90,7 +90,7 @@ const BannerSlider = () => {
   };
 
   return (
-    <section className="w-full bg-white pt-4 pb-2 md:pt-6 md:pb-4 overflow-hidden">
+    <section className="w-full bg-white pt-4 pb-2 md:py-10  overflow-hidden">
       <div className="container mx-auto px-2 md:px-3 lg:px-4 py-3 relative group">
 
         {/* Slider Container */}

@@ -1,24 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Star, ShoppingCart, Heart,ArrowRight, ShoppingBag, Truck } from "lucide-react";
+import React from "react";
+import { Star, ShoppingCart, Heart, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
-const HomeDecorSection = () => {
-    const products = useSelector((state) => state.home.homeDecorProducts);
-    const [itemsPerView, setItemsPerView] = useState(1);
-
-    useEffect(() => {
-        const handleResize = () => {
-            let ipv = 1;
-            if (window.innerWidth >= 1024) ipv = 4;
-            else if (window.innerWidth >= 768) ipv = 3;
-            else ipv = 2;
-            setItemsPerView(ipv);
-        };
-        handleResize();
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
+const TrendingSection = () => {
+    const products = useSelector((state) => state.home.recommendedProducts);
 
     const renderProductCard = (product) => (
         <motion.div
@@ -27,7 +13,7 @@ const HomeDecorSection = () => {
             className="bg-white rounded-lg border border-gray-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col h-full cursor-pointer"
         >
             {/* Image Wrapper */}
-            <div className="relative overflow-hidden bg-gray-50 h-[120px] sm:h-[150px] md:h-[180px] lg:h-[200px]">
+            <div className="relative overflow-hidden bg-gray-50 h-[100px] sm:h-[130px] md:h-[160px] lg:h-[180px]">
                 <img
                     src={product.image}
                     alt={product.name}
@@ -59,7 +45,7 @@ const HomeDecorSection = () => {
                     <span className="text-slate-800 text-[8px] font-bold mr-0.5">{product.rating}</span>
                     <Star size={8} className="text-amber-400" fill="currentColor" />
                     <div className="w-[1px] h-2 bg-gray-300 mx-1"></div>
-                    <span className="text-gray-500 text-[8px]">{product.reviews}</span>
+                    <span className="text-gray-500 text-[8px]">{product.reviews || 0}</span>
                 </div>
             </div>
 
@@ -71,7 +57,7 @@ const HomeDecorSection = () => {
                 <h3 className="text-slate-800 font-bold text-[12px] md:text-[13px] lg:text-sm mb-1.5 line-clamp-2 leading-tight flex-1">
                     {product.name}
                 </h3>
-
+                
                 <div className="flex items-end justify-between mt-auto pt-1">
                     <div className="flex flex-col">
                         <span className="text-[13px] md:text-base lg:text-lg font-black text-slate-900 leading-none">
@@ -102,59 +88,47 @@ const HomeDecorSection = () => {
     );
 
     return (
-        <section className="py-12  bg-slate-100">
-            <div className="container mx-auto px-4 md:px-6 lg:px-8">
-                
-                {/* Modern Dark Aesthetic Promo Banner */}
-                <div className="w-full h-[160px] md:h-[200px] lg:h-[320px] rounded-2xl relative overflow-hidden mb-8 shadow-xl group border border-slate-300 flex items-center justify-start px-4 md:px-6 lg:px-16 cursor-pointer">
-                    {/* Background Image Abstract*/}
-                    <div className="absolute inset-0">
-                        <img 
-                            src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop" 
-                            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-[1500ms] opacity-80 " 
-                            alt="Modern Interiors backdrop " 
-                        />
-                    </div>
-                    {/* Rich Blur Gradient Overlay */}
-                    <div className="absolute inset-0 bg-black/40 hidden md:block"></div>
-                    <div className="absolute inset-0 bg-black/60  md:hidden"></div>
-
-                    {/* Banner Content */}
-                    <div className="relative z-10 flex flex-col items-start text-left max-w-full md:max-w-[50%] lg:max-w-[40%] mt-auto md:mt-0 mb-4 md:mb-0">
-                        <div className="flex items-center gap-2 mb-2 mt-2 md:mt-0 md:mb-3">
-                            <span className="w-6 h-[2px] bg-amber-400"></span>
-                            <span className="text-amber-400 font-extrabold text-[8px] md:text-[10px] lg:text-sm tracking-[0.2em] uppercase">Premium Living</span>
+        <section className="py-6 md:py-12 bg-white">
+            <div className="container mx-auto px-4 ">
+                {/* Colored div wrapping the whole section */}
+                <div className="bg-[#cc8b86] border border-[#ffccd5] rounded-2xl p-5 sm:p-6 md:p-8 lg:p-10 shadow-sm">
+                    
+                    {/* Section Title */}
+                    <div className="flex flex-col items-center justify-center text-center mb-10 md:mb-12">
+                        <div className="inline-flex items-center justify-center gap-3 mb-3">
+                            <span className="w-10 h-[2px] bg-white/40 rounded-full"></span>
+                            <span className="text-white text-[10px] md:text-xs font-black uppercase tracking-[0.2em] opacity-90">Hot Collection</span>
+                            <span className="w-10 h-[2px] bg-white/40 rounded-full"></span>
                         </div>
-                        <h2 className="text-xl md:text-3xl sm:text-3xl lg:text-5xl font-black text-white tracking-tight leading-tight mb-2 md:mb-2">
-                            Modern <br className="hidden lg:block" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-500">Aesthetics</span>
-                        </h2>
-                        <p className="text-gray-300 text-[10px]  font-medium tracking-wide mb-4 md:mb- line-clamp-2 md:line-clamp-none lg:text-sm">
-                            Transform your space with curated minimalist furniture, chic accents, and elegant lighting.
-                        </p>
-                        <button className="px-5 py-1.5 md:py-2.5 md:px-8 lg:py-3.5 bg-white text-slate-900 font-black text-[10px] md:text-xs rounded-full hover:bg-amber-400 transition-all shadow-[0_0_20px_rgba(0,0,0,0.3)] hover:shadow-amber-400/20 active:scale-95 uppercase tracking-widest flex items-center gap-2">
-                            Explore Catalog <ArrowRight size={14}/>
-                        </button>
-                    </div>
-                </div>
-
-                {/* Section Title */}
-                <div className="flex items-center justify-between mb-6 md:mb-8">
-                    <div>
-                        <h3 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">
-                            Home <span className="text-amber-600">Decor</span>
+                        <h3 className="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight mb-3 drop-shadow-sm">
+                            Trending <span className="text-[#ffd9da]">Now</span>
                         </h3>
-                        <p className="text-slate-500 text-xs md:text-sm mt-1 uppercase font-bold tracking-widest">Elevate your lifestyle</p>
+                        <p className="text-[#fff9ec] text-xs md:text-sm uppercase font-bold tracking-widest max-w-lg mx-auto opacity-90">
+                            Handpicked favorites just for you. Discover what everyone is loving this week!
+                        </p>
                     </div>
-                </div>
 
-                {/* Product Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
-                    {products.slice(0, itemsPerView >= 4 ? 8 : 6).map(renderProductCard)}
+                    {/* Product Grid */}
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+                        {products.slice(0, 8).map((product) => renderProductCard(product))}
+                    </div>
+
+                    {/* Modern Action Button */}
+                    <div className="mt-10 md:mt-12 flex justify-center w-full">
+                        <motion.button 
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="group relative flex items-center justify-center gap-3 bg-white/20 hover:bg-white text-white hover:text-[#cc8b86] border border-white/40 hover:border-white px-8 md:px-12 py-3.5 md:py-4 rounded-full font-bold text-xs md:text-sm uppercase tracking-widest transition-all duration-500 shadow-xl backdrop-blur-md overflow-hidden"
+                        >
+                            <span className="relative z-10 transition-colors duration-300">Discover More Styles</span>
+                            <ArrowRight size={18} className="relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
+                        </motion.button>
+                    </div>
+                    
                 </div>
-                
             </div>
         </section>
     );
 };
 
-export default HomeDecorSection;
+export default TrendingSection;

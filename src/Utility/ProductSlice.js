@@ -1,12 +1,149 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const ProductSlice = createSlice({
-  name: "ProductSlice",
-  initialState: {
-    allProducts: [], // Placeholder for eventual full product list
-  },
-  reducers: {},
+const initialState = {
+  banners: [
+    {
+      id: 1,
+      link: "/category/smartphones",
+      brandText: "noise",
+      brandDetails: "SOUND BY BOSE",
+      product: "Master Buds 2",
+      price: "₹6,999",
+      subText: "Chance to win iPhone16 | Notify me",
+      bgColor: "bg-gradient-to-r from-gray-900 to-black",
+      gradientMask: "from-gray-900 via-gray-900/80",
+      imgSrc: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=400&auto=format&fit=crop",
+      textColor: "text-white",
+      bankOffer: true,
+    },
+    {
+      id: 2,
+      link: "/category/smartphones",
+      brandText: "POCO",
+      brandDetails: "| UrbanCart Exclusive",
+      brandBadge: "bg-yellow-400 text-black px-1.5 py-0.5 rounded-sm font-bold text-[10px]",
+      product: "POCO X8 Pro",
+      price: "₹29,999",
+      subText: "Sale starts on 23rd March, 12 PM",
+      bgColor: "bg-gradient-to-r from-black via-gray-900 to-gray-800",
+      gradientMask: "from-black via-black/80",
+      imgSrc: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=400&auto=format&fit=crop",
+      textColor: "text-white",
+      bankOffer: true,
+    },
+    {
+      id: 3,
+      link: "/category/electronics",
+      brandText: "SAMSUNG",
+      brandDetails: "",
+      product: "43\" 4K TVs!",
+      price: "₹11,069",
+      subText: "Crystal Clear. Crystal Powerful.",
+      bgColor: "bg-gradient-to-r from-black via-gray-900 to-gray-800",
+      gradientMask: "from-black via-black/50",
+      imgSrc: "https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=400&auto=format&fit=crop",
+      textColor: "text-white",
+      bankOffer: true,
+    },
+    {
+      id: 4,
+      link: "/category/electronics",
+      brandText: "APPLE",
+      brandDetails: "SERIES 9",
+      product: "Smartwatches",
+      price: "₹32,499",
+      subText: "The ultimate device for health.",
+      bgColor: "bg-gradient-to-r from-black via-gray-900 to-gray-800",
+      gradientMask: "from-black via-black/50",
+      imgSrc: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?q=80&w=400&auto=format&fit=crop",
+      textColor: "text-white",
+      bankOffer: true,
+    },
+    {
+      id: 5,
+      link: "/category/electronics",
+      brandText: "ASUS",
+      brandDetails: "ROG",
+      product: "Gaming Laptops",
+      price: "₹74,990",
+      subText: "GeForce RTX™ 40 Series.",
+      bgColor: "bg-gradient-to-r from-black via-gray-900 to-gray-800",
+      gradientMask: "from-black via-black/50",
+      imgSrc: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=400&auto=format&fit=crop",
+      textColor: "text-white",
+      bankOffer: true,
+    },
+    {
+      id: 6,
+      link: "/category/appliances",
+      brandText: "BOSCH",
+      brandDetails: "FRONT LOAD",
+      product: "Washing Machines",
+      price: "₹24,500",
+      subText: "AntiTangle technology. Whisper quiet.",
+      bgColor: "bg-gradient-to-r from-black via-gray-900 to-gray-800",
+      gradientMask: "from-black via-black/50",
+      imgSrc: "https://images.unsplash.com/photo-1626806787426-5910811b6325?q=80&w=400&auto=format&fit=crop",
+      textColor: "text-white",
+      bankOffer: true,
+    }
+  ],
+  recommendedProducts: [
+    {
+      id: 1,
+      name: "Premium Wireless Earbuds",
+      category: "Electronics",
+      price: "₹4,999",
+      originalPrice: "₹7,999",
+      rating: 4.8,
+      reviews: 124,
+      image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=400&auto=format&fit=crop",
+      discount: "37% OFF",
+      isNew: true,
+    },
+    {
+      id: 2,
+      name: "Classic Leather Watch",
+      category: "Accessories",
+      price: "₹2,499",
+      originalPrice: "₹3,999",
+      rating: 4.5,
+      reviews: 89,
+      image: "https://images.unsplash.com/photo-1524592091214-84d5a4701e7c?q=80&w=400&auto=format&fit=crop",
+      discount: "38% OFF",
+    },
+    {
+      id: 3,
+      name: "Minimalist Cotton Tee",
+      category: "Fashion",
+      price: "₹799",
+      originalPrice: "₹1,499",
+      rating: 4.3,
+      reviews: 256,
+      image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=400&auto=format&fit=crop",
+      discount: "47% OFF",
+    },
+    {
+      id: 4,
+      name: "Ultra-Light Running Shoes",
+      category: "Footwear",
+      price: "₹3,299",
+      originalPrice: "₹5,499",
+      rating: 4.7,
+      reviews: 167,
+      image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=400&auto=format&fit=crop",
+      discount: "40% OFF",
+      isNew: true,
+    }
+  ]
+};
+
+const productSlice = createSlice({
+  name: "products",
+  initialState,
+  reducers: {
+    // We can add actions here later if needed (e.g. setProducts, addProduct)
+  }
 });
 
-export default ProductSlice.reducer;
-export const {} = ProductSlice.actions;
+export default productSlice.reducer;

@@ -1,12 +1,12 @@
 import React from "react";
-import BannerSlider from "../Components/BannerSlider";
-import SuggestionSection from "../Components/SuggestionSection";
-import TrendingSection from "../Components/TrendingSection";
-import EthnicWearSection from "../Components/EthnicWearSection";
-import HomeDecorSection from "../Components/HomeDecorSection";
-import FeaturesSection from "../Components/FeaturesSection";
-import ElectronicsSection from "../Components/ElectronicsSection";
-import YouMayLikeSection from "../Components/YouMayLikeSection";
+import BannerSlider from "../Components/homeComponents/BannerSlider";
+import SuggestionSection from "../Components/homeComponents/SuggestionSection";
+import TrendingSection from "../Components/homeComponents/TrendingSection";
+import EthnicWearSection from "../Components/homeComponents/EthnicWearSection";
+import HomeDecorSection from "../Components/homeComponents/HomeDecorSection";
+import FeaturesSection from "../Components/homeComponents/FeaturesSection";
+import ElectronicsSection from "../Components/homeComponents/ElectronicsSection";
+import YouMayLikeSection from "../Components/homeComponents/YouMayLikeSection";
 
 const Home = () => {
   return (

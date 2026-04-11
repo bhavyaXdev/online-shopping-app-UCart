@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <footer className="bg-slate-900 pt-16 pb-8 text-gray-300 border-t-4 border-indigo-500">
+        <footer className="hidden md:block bg-slate-900 pt-16 pb-8 text-gray-300 border-t-4 border-indigo-500">
             <div className="container mx-auto px-4 md:px-6">
                 {/* Newsletter & Guarantee Section */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12 pb-12 border-b border-slate-800">

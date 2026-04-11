@@ -1,7 +1,7 @@
 import React from 'react';
 import { Truck, RefreshCw, ShieldCheck, Headset } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useDraggable } from '../hooks/useDraggable';
+import { useDraggable } from '../../hooks/useDraggable';
 
 const FeaturesSection = () => {
     const dragProps = useDraggable();

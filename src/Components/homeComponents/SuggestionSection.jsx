@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Star, ShoppingCart, Heart, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
+import ProductCard from "../ProductCard";
 
 const SuggestionSection = () => {
   const products = useSelector((state) => state.home.recommendedProducts);
@@ -18,7 +19,7 @@ const SuggestionSection = () => {
       } else if (window.innerWidth >= 768) {
         ipv = 3; // Tablet: 3 items visible
       } else {
-        ipv = 2; // Mobile: 2 items grid (from previous user turn)
+        ipv = 2; // Mobile: 2 items grid
       }
       setItemsPerView(ipv);
       setCurrentIndex(0);
@@ -30,7 +31,7 @@ const SuggestionSection = () => {
   }, []);
 
   const isSlider = itemsPerView === 3; // Only tablet is a slider per request
-  const totalGroups = Math.ceil(products.length / itemsPerView);
+  const totalGroups = Math.ceil(products.length / (isSlider ? 3 : 4));
 
   const nextSlide = () => {
     if (totalGroups <= 1) return;
@@ -71,80 +72,6 @@ const SuggestionSection = () => {
       }
     }),
   };
-
-  const renderProductCard = (product) => (
-    <motion.div
-      key={product.id}
-      whileHover={{ y: -5 }}
-      className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group flex flex-col h-full"
-    >
-      {/* Image Container */}
-      <div className="relative aspect-square overflow-hidden bg-gray-50">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-full object-cover select-none pointer-events-none"
-          draggable="false"
-        />
-
-        {/* Badges - Hidden on mobile */}
-        <div className="absolute top-4 left-4 flex flex-col gap-2 hidden md:flex">
-          {product.isNew && (
-            <span className="bg-brand-primary text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-sm uppercase tracking-wider">
-              New
-            </span>
-          )}
-          <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-sm uppercase tracking-wider">
-            {product.discount}
-          </span>
-        </div>
-
-        {/* Quick Action Overlay - Desktop only */}
-        <div className="absolute top-5 right-3 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-3 hidden md:flex">
-          <button className="w-10 h-10 bg-white rounded-full flex  items-center justify-center text-gray-800 hover:bg-brand-primary hover:text-white transition-all shadow-md transform translate-y-4 group-hover:translate-y-0 duration-300">
-            <Heart size={18} />
-          </button>
-          <button className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-800 hover:bg-brand-primary hover:text-white transition-all shadow-md transform translate-y-4 group-hover:translate-y-0 duration-300 delay-75">
-            <ShoppingCart size={18} />
-          </button>
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="p-2.5 md:p-2.5 lg:p-5 flex flex-col flex-1">
-        <div className="text-[11px] font-bold text-brand-primary uppercase tracking-widest mb-1 md:mb-1.5 hidden md:block">
-          {product.category}
-        </div>
-        <h3 className="text-gray-800 font-bold text-[13px] md:text-sm lg:text-base mb-1 line-clamp-2 leading-tight flex-1">
-          {product.name}
-        </h3>
-
-        {/* Rating */}
-        <div className="flex items-center gap-1 mb-1 md:mb-1.5 lg:mb-3">
-          <div className="flex items-center text-yellow-500">
-            <Star size={12} fill="currentColor" />
-            <span className="text-gray-700 text-[10px] md:text-xs font-bold ml-0.5 md:ml-1">{product.rating}</span>
-          </div>
-          <span className="text-gray-400 text-[9px] md:text-[11px]">({product.reviews})</span>
-        </div>
-
-        {/* Price Section */}
-        <div className="flex items-center justify-between mt-auto">
-          <div className="flex flex-col">
-            <span className="text-sm md:text-[15px] lg:text-lg font-black text-slate-800 leading-none">
-              {product.price}
-            </span>
-            <span className="text-[9px] md:text-[9px] lg:text-xs text-gray-400 line-through mt-0.5 hidden md:block">
-              {product.originalPrice}
-            </span>
-          </div>
-          <button className="bg-gray-900 text-white p-2 md:p-2 lg:p-2.5 rounded-lg md:rounded-xl hover:bg-brand-primary transition-colors shadow-sm hidden md:flex">
-            <ShoppingCart size={16} md:size={18} />
-          </button>
-        </div>
-      </div>
-    </motion.div>
-  );
 
   return (
     <section className="py-12 bg-white overflow-hidden">
@@ -196,7 +123,11 @@ const SuggestionSection = () => {
                 }}
                 className="grid grid-cols-3 gap-3 md:gap-6 w-full cursor-grab active:cursor-grabbing"
               >
-                {products.slice(currentIndex * 3, currentIndex * 3 + 3).map(renderProductCard)}
+                {products.slice(currentIndex * 3, currentIndex * 3 + 3).map((product) => (
+                    <div key={product.id}>
+                        <ProductCard product={product} reviewsAtBottom={true} />
+                    </div>
+                ))}
               </motion.div>
             </AnimatePresence>
 
@@ -217,7 +148,9 @@ const SuggestionSection = () => {
         ) : (
           /* Mobile/Desktop Grid */
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
-            {products.map(renderProductCard)}
+            {products.map((product) => (
+                <ProductCard key={product.id} product={product} reviewsAtBottom={true} />
+            ))}
           </div>
         )}
 

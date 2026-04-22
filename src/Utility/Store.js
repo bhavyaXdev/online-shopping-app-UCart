@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import ProductSlice from "./productSlice.js";
+import ProductSlice from "./ProductSlice.js";
 import HomeSlice from "./HomeSlice.js";
 import womensFashionReducer from "./womensFashionSlice.js";
 import mensFashionReducer from "./mensFashionSlice.js";

@@ -75,7 +75,7 @@ const SuggestionSection = () => {
 
   return (
     <section className="py-12 bg-white overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
+      <div className="container mx-auto px-4 md:px-10">
         <div className="flex items-center justify-between mb-8">
           <div>
             <h2 className="text-2xl md:text-3xl font-black text-slate-800 tracking-tight">

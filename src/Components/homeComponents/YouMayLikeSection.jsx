@@ -43,7 +43,7 @@ const YouMayLikeSection = () => {
          <Sparkle className="absolute bottom-[2%] left-[5%] text-[#eabfae]/60 animate-[pulse_4s_ease-in-out_infinite]" size={20} fill="currentColor" />
       </div>
 
-      <div className="container mx-auto md:px-6 relative z-10 mt-6 lg:mt-5">
+      <div className="container mx-auto px-4 md:px-10 relative z-10 mt-6 lg:mt-5">
         {/* Compact Heart Header Section */}
         <div className="flex justify-center items-center mb-6 md:mb-20 mt-2 md:mt-4 relative w-full h-[120px] md:h-[150px]">
           {/* Background Hearts Layered */}

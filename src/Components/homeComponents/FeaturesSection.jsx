@@ -56,7 +56,7 @@ const FeaturesSection = () => {
 
     return (
         <section className="py-12 md:py-16 bg-white border-t border-gray-100 overflow-hidden">
-            <div className="container mx-auto px-4 md:px-6 lg:px-8">
+            <div className="container mx-auto px-4 md:px-10">
                 <motion.div 
                     {...dragProps}
                     variants={containerVariants}

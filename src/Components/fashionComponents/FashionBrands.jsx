@@ -50,13 +50,13 @@ const FashionBrands = () => {
       </div>
 
       {/* 2. Hero Banner */}
-      <div className="relative w-full border border-[#fbdf70] h-[180px] md:h-[300px] bg-gradient-to-r from-[#fbdf70] via-[#fcf0b1] to-white rounded-xl overflow-hidden mb-6 flex items-center shadow-[0_2px_10px_rgba(0,0,0,0.06)] cursor-pointer group">
+      <div className="relative w-full border border-[#fbdf70] h-[180px] md:h-[300px] bg-linear-to-r from-[#fbdf70] via-[#fcf0b1] to-white rounded-xl overflow-hidden mb-6 flex items-center shadow-[0_2px_10px_rgba(0,0,0,0.06)] cursor-pointer group">
         
         {/* Fashion Logos Background (Positioned to the right) */}
         <div className="absolute right-0 top-0 bottom-0 w-1/2 md:w-[60%] z-0">
            <img 
              src="https://i.pinimg.com/736x/7d/d3/43/7dd343368ccdca763a13919df8f584d8.jpg" 
-             className="w-full h-full object-cover object-left [mask-image:linear-gradient(to_right,transparent,black)]"
+             className="w-full h-full object-cover object-left  mask-mask-[linear-gradient(to_right,transparent,black)]"
              alt="Brand Logos" 
            />
         </div>

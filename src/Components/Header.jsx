@@ -20,6 +20,7 @@ import {
   X,
   Eye,
   EyeOff,
+  BabyIcon,
 } from "lucide-react";
 
 // --- Reusable Sub-Components ---
@@ -524,11 +525,12 @@ const Header = () => {
               { name: "For You", icon: ShoppingBag },
               { name: "Fashion", icon: Shirt },
               { name: "Beauty", icon: SprayCan },
-              { name: "Mobiles", icon: Smartphone },
+              { name: "Kids & Baby", icon: BabyIcon },
+              { name: "Mobiles & Tablets", icon: Smartphone },
               { name: "Electronics", icon: Laptop },
               { name: "Books", icon: Book },
             ].map((tab, idx) => {
-              const targetPath = tab.name === "For You" ? "/" : `/category/${tab.name.toLowerCase().replace(/\s+/g, "-")}`;
+              const targetPath = tab.name === "For You" ? "/" : `/category/${tab.name.toLowerCase().replace(/ & /g, "-").replace(/\s+/g, "-")}`;
               const isActive = currentPath === targetPath || (tab.name === "For You" && currentPath === "/category/for-you") || (tab.name === "Fashion" && currentPath.includes("fashion"));
               
               return (

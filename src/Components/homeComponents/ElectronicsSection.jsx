@@ -12,7 +12,7 @@ const ElectronicsSection = () => {
 
     return (
         <section className="py-8 md:py-12 bg-white">
-            <div className="container mx-auto px-4 md:px-6">
+            <div className="container mx-auto px-4 md:px-10">
                 <div className="bg-gradient-to-br from-slate-900 via-[#0f172a] to-blue-950 rounded-2xl md:rounded-3xl p-5 sm:p-6 md:p-8 lg:p-10 shadow-2xl border border-slate-800 relative overflow-hidden">
                     {/* Background Tech Accent */}
                     <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-600/20 blur-[80px] rounded-full pointer-events-none"></div>

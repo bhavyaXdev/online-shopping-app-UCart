@@ -1,5 +1,5 @@
 import React from "react";
-import BannerSlider from "../Components/homeComponents/BannerSlider";
+import HomeSlider from "../Components/homeComponents/HomeSlider";
 import SuggestionSection from "../Components/homeComponents/SuggestionSection";
 import TrendingSection from "../Components/homeComponents/TrendingSection";
 import EthnicWearSection from "../Components/homeComponents/EthnicWearSection";
@@ -10,8 +10,8 @@ import YouMayLikeSection from "../Components/homeComponents/YouMayLikeSection";
 
 const Home = () => {
   return (
-    <div className="bg-white md:px-4">
-      <BannerSlider />
+    <div className="bg-white">
+      <HomeSlider />
       <TrendingSection />
       <SuggestionSection />
       <EthnicWearSection />

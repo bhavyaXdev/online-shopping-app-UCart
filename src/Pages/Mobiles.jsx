@@ -3,6 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchMobileProducts } from "../Utility/mobilesSlice";
 import CategoryListing from "../Components/CategoryListing";
 
+// Import Mobile specific components
+import MobilesPromoBanner from "../Components/mobilesComponents/MobilesPromoBanner";
+import MobilesSlider from "../Components/mobilesComponents/MobilesSlider";
+import MobilesCategories from "../Components/mobilesComponents/MobilesCategories";
+import MobilesFeatureSections from "../Components/mobilesComponents/MobilesFeatureSections";
+import MobilesHotDeals from "../Components/mobilesComponents/MobilesHotDeals";
+
 const Mobiles = () => {
   const dispatch = useDispatch();
   const { products, loading, error } = useSelector((state) => state.mobiles);
@@ -18,16 +25,26 @@ const Mobiles = () => {
   const filterCategories = ["Mobiles", "Tablets", "Accessories", "Smartphones", "iPads"];
 
   return (
-    <CategoryListing
-      title="Mobiles & Tablets"
-      products={products}
-      loading={loading}
-      error={error}
-      onRetry={() => dispatch(fetchMobileProducts())}
-      filterCategories={filterCategories}
-      breadcrumbs={breadcrumbs}
-      filterSizes={[]} // Tech products don't have clothing sizes
-    />
+    <div className="bg-white min-h-screen">
+      {/* <MobilesPromoBanner /> */}
+      <MobilesSlider />
+      <MobilesCategories />
+      <MobilesFeatureSections />
+      <MobilesHotDeals />
+
+      {/* <div className="mt-8 border-t border-gray-100">
+        <CategoryListing
+          title="All Mobiles & Tablets"
+          products={products}
+          loading={loading}
+          error={error}
+          onRetry={() => dispatch(fetchMobileProducts())}
+          filterCategories={filterCategories}
+          breadcrumbs={breadcrumbs}
+          filterSizes={[]} 
+        />
+      </div> */}
+    </div>
   );
 };
 

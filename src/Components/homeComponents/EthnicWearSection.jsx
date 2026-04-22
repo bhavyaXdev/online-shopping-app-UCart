@@ -27,7 +27,7 @@ const EthnicWearSection = () => {
 
     return (
         <section className="py-12 bg-gradient-to-r from-[#FDECF0] to-[#FEF9E7] ">
-            <div className="container mx-auto px-4 md:px-6 lg:px-8">
+            <div className="container mx-auto px-4 md:px-10">
                 {/* Promo Banner */}
                 <div className="w-full h-[160px] md:h-[200px] lg:h-[300px] rounded-2xl relative overflow-hidden mb-8 bg-gradient-to-r from-[#F0C4CE] to-[#F7D6A0] flex items-center px-4 md:px-8 lg:px-16 border border-[#e5d5b7] shadow-md group">
                     {/* Title Group - Left Aligned */}

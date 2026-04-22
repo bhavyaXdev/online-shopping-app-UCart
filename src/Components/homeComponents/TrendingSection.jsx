@@ -9,7 +9,7 @@ const TrendingSection = () => {
 
     return (
         <section className="py-6 md:py-12 bg-white">
-            <div className="container mx-auto px-4 ">
+            <div className="container mx-auto px-4 md:px-10">
                 {/* Colored div wrapping the whole section */}
                 <div className="bg-[#cc8b86] border border-[#ffccd5] rounded-2xl p-5 sm:p-6 md:p-8 lg:p-10 shadow-sm">
                     

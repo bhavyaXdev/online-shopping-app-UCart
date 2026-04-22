@@ -121,7 +121,7 @@ const FashionSummerSpecials = () => {
                 </div>
 
                 {/* Content (Inside the card) */}
-                <div className="flex-grow p-2 md:p-4 flex flex-col items-center justify-center text-center bg-white">
+                <div className="grow p-2 md:p-4 flex flex-col items-center justify-center text-center bg-white">
                   <h3 className="text-gray-900 font-serif text-[13px] md:text-lg font-black mb-0.5 md:mb-1 transition-colors group-hover:text-orange-600 line-clamp-1">
                     {item.title}
                   </h3>

@@ -22,7 +22,7 @@ const HomeDecorSection = () => {
 
     return (
         <section className="py-12  bg-slate-100">
-            <div className="container mx-auto px-4 md:px-6 lg:px-8">
+            <div className="container mx-auto px-4 md:px-10">
                 
                 {/* Modern Dark Aesthetic Promo Banner */}
                 <div className="w-full h-[160px] md:h-[200px] lg:h-[320px] rounded-2xl relative overflow-hidden mb-8 shadow-xl group border border-slate-300 flex items-center justify-start px-4 md:px-6 lg:px-16 cursor-pointer">

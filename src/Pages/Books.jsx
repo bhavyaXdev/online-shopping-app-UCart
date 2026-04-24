@@ -1,33 +1,37 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchBooksProducts } from "../Utility/booksSlice";
-import CategoryListing from "../Components/CategoryListing";
+
+// Import Books & Stationery specific components
+import BooksStationerySlider from "../Components/booksStationeryComponents/BooksStationerySlider";
+import BooksStationeryLibrary from "../Components/booksStationeryComponents/BooksStationeryLibrary";
+import BooksStationeryEssentials from "../Components/booksStationeryComponents/BooksStationeryEssentials";
+import BooksStationeryCreativeCorner from "../Components/booksStationeryComponents/BooksStationeryCreativeCorner";
+import BooksStationeryHighlights from "../Components/booksStationeryComponents/BooksStationeryHighlights";
+import BooksStationeryCategories from "../Components/booksStationeryComponents/BooksStationeryCategories";
+import BooksStationeryHangingRope from "../Components/booksStationeryComponents/BooksStationeryHangingRope";
+import BooksStationeryBestsellers from "../Components/booksStationeryComponents/BooksStationeryBestsellers";
+import BooksStationeryCreativeFlow from "../Components/booksStationeryComponents/BooksStationeryCreativeFlow";
 
 const Books = () => {
   const dispatch = useDispatch();
-  const { products, loading, error } = useSelector((state) => state.books);
 
   useEffect(() => {
     dispatch(fetchBooksProducts());
   }, [dispatch]);
 
-  const breadcrumbs = [
-    { label: "Books & Stationery", path: "/category/books-stationery" }
-  ];
-
-  const filterCategories = ["Fiction", "Self-Help", "Stationery", "Education", "Art Supplies"];
-
   return (
-    <CategoryListing
-      title="Books & Stationery"
-      products={products}
-      loading={loading}
-      error={error}
-      onRetry={() => dispatch(fetchBooksProducts())}
-      filterCategories={filterCategories}
-      breadcrumbs={breadcrumbs}
-      filterSizes={[]} // Books don't have clothing sizes
-    />
+    <div className="bg-white min-h-screen">
+      <BooksStationerySlider />
+      <BooksStationeryCategories />
+      <BooksStationeryLibrary />
+      <BooksStationeryHighlights />
+      <BooksStationeryEssentials />
+      <BooksStationeryCreativeCorner />
+      {/* <BooksStationeryBestsellers /> */}
+      {/* <BooksStationeryHangingRope /> */}
+      {/* <BooksStationeryCreativeFlow /> */}
+    </div>
   );
 };
 

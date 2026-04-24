@@ -1,4 +1,5 @@
 import React from "react";
+import CategoryGrid from "../CategoryGrid";
 
 const categoriesData = [
   // Col 1
@@ -126,37 +127,11 @@ const categoriesData = [
 
 const FashionCategories = () => {
   return (
-    <section className="container mx-auto w-full py-4 md:py-8 px-4 md:px-10">
-      <div className="flex items-center gap-2 mb-4">
-        <h2 className="text-xl md:text-2xl font-black text-pink-500 tracking-tight flex items-center">
-          Shop By Category
-        </h2>
-      </div>
-      <div className="w-full overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-        {/* Align exactly to beginning and ending using full min-width and space-between */}
-        <div className="grid grid-rows-2 grid-flow-col gap-x-4 gap-y-6 pb-2 min-w-full w-max justify-between">
-          {categoriesData.map((cat, i) => (
-            <div
-              key={`cat-${i}`}
-              className="group cursor-pointer flex flex-col items-center gap-2 w-[90px] md:w-[100px]"
-            >
-              <div
-                className={`w-[90px] h-[90px] md:w-[100px] md:h-[100px] ${cat.bg} rounded-xl overflow-hidden flex items-center justify-center relative shadow-sm`}
-              >
-                <img
-                  src={cat.img}
-                  className="w-full h-full object-cover"
-                  alt={cat.name}
-                />
-              </div>
-              <h3 className="text-[11px] md:text-[13px] font-medium text-gray-800 text-center leading-tight px-1 flex-1 flex items-start justify-center w-full">
-                {cat.name}
-              </h3>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <CategoryGrid
+      title="Shop By Category"
+      categories={categoriesData}
+      titleClass="text-xl md:text-2xl font-black text-pink-500 tracking-tight flex items-center"
+    />
   );
 };
 

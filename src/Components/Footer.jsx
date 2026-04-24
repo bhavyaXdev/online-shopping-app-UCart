@@ -13,6 +13,7 @@ import {
   Heart
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import Logo from './Common/Logo';
 
 const Footer = () => {
     return (
@@ -71,9 +72,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
                     {/* Brand / About */}
                     <div className="flex flex-col">
-                        <Link to="/" className="text-2xl font-black text-white tracking-tighter mb-5 inline-block cursor-pointer">
-                            URBAN<span className="text-indigo-500">CART</span>
-                        </Link>
+                        <Logo variant="dark" className="mb-5" />
                         <p className="text-slate-400 text-sm leading-relaxed mb-6 pe-4">
                             Your ultimate destination for fashion, electronics, and lifestyle. Making premium quality accessible to everyone, everywhere.
                         </p>

@@ -8,7 +8,7 @@ const deals = [
     name: "Samsung Galaxy S24 Ultra",
     price: "₹1,29,999",
     originalPrice: "₹1,34,999",
-    discount: "Save ₹5000",
+    discount: "15% OFF",
     rating: 4.9,
     reviews: 1204,
     badge: "Most Popular",
@@ -19,7 +19,7 @@ const deals = [
     name: "Apple iPhone 15 Pro",
     price: "₹1,34,900",
     originalPrice: "₹1,34,900",
-    discount: "Bank Offers",
+    discount: "10% OFF",
     rating: 4.8,
     reviews: 3240,
     badge: "Trending",
@@ -41,7 +41,7 @@ const deals = [
     name: "Google Pixel 8 Pro",
     price: "₹1,06,999",
     originalPrice: "₹1,06,999",
-    discount: "Free Watch",
+    discount: "20% OFF",
     rating: 4.6,
     reviews: 512,
     badge: "AI Camera",
@@ -63,8 +63,8 @@ const deals = [
 const MobilesHotDeals = () => {
   return (
     <ProductCarousel 
-      title="Hot Deals"
-      subtitle="Unbeatable prices on latest smartphones"
+      title="Top Deals on Smartphones"
+      subtitle="Limited Time Offers"
       viewAllLink="#"
       icon={<Zap className="text-blue-500 fill-blue-500" size={20} md:size={24} />}
       containerClass="bg-[#f8f9fa]"

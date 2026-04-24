@@ -9,6 +9,7 @@ import MobilesSlider from "../Components/mobilesComponents/MobilesSlider";
 import MobilesCategories from "../Components/mobilesComponents/MobilesCategories";
 import MobilesFeatureSections from "../Components/mobilesComponents/MobilesFeatureSections";
 import MobilesHotDeals from "../Components/mobilesComponents/MobilesHotDeals";
+import MobilesBestSellers from "../Components/mobilesComponents/MobilesBestSellers";
 
 const Mobiles = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ const Mobiles = () => {
       <MobilesCategories />
       <MobilesFeatureSections />
       <MobilesHotDeals />
+      <MobilesBestSellers />
 
       {/* <div className="mt-8 border-t border-gray-100">
         <CategoryListing

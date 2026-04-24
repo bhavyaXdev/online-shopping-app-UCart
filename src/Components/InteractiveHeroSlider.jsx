@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import SliderDots from './Common/SliderDots';
 
 /**
  * InteractiveHeroSlider - A reusable high-performance slider for hero sections.
@@ -17,7 +18,8 @@ const InteractiveHeroSlider = ({
   mobileHeight = "h-[200px]", 
   tabletHeight = "md:h-[240px]", 
   desktopHeight = "lg:h-[260px]",
-  containerClass = ""
+  containerClass = "",
+  autoPlayInterval = 5000
 }) => {
   const [activeIndex, setActiveIndex] = useState(slides.length);
   const [isHovered, setIsHovered] = useState(false);
@@ -26,6 +28,17 @@ const InteractiveHeroSlider = ({
 
   // Triple the items for infinite-like scrolling logic
   const repeatedSlides = [...slides, ...slides, ...slides];
+
+  // Auto-play Logic
+  useEffect(() => {
+    let interval;
+    if (!isHovered) {
+      interval = setInterval(() => {
+        setActiveIndex(prev => prev + 1);
+      }, autoPlayInterval);
+    }
+    return () => clearInterval(interval);
+  }, [isHovered, autoPlayInterval]);
 
   useEffect(() => {
     const updateWidth = () => {
@@ -55,13 +68,25 @@ const InteractiveHeroSlider = ({
     }
   };
 
+  const [isJumping, setIsJumping] = useState(false);
+
   // Reset to middle set for infinite loop feel
   useEffect(() => {
+    let timeout;
     if (activeIndex >= slides.length * 2) {
-      setTimeout(() => setActiveIndex(slides.length), 300);
+      timeout = setTimeout(() => {
+        setIsJumping(true);
+        setActiveIndex(slides.length);
+        setTimeout(() => setIsJumping(false), 50);
+      }, 400);
     } else if (activeIndex < slides.length) {
-      setTimeout(() => setActiveIndex(slides.length * 2 - 1), 300);
+      timeout = setTimeout(() => {
+        setIsJumping(true);
+        setActiveIndex(slides.length * 2 - 1);
+        setTimeout(() => setIsJumping(false), 50);
+      }, 400);
     }
+    return () => clearTimeout(timeout);
   }, [activeIndex, slides.length]);
 
   return (
@@ -76,7 +101,7 @@ const InteractiveHeroSlider = ({
           drag="x"
           dragConstraints={{ left: -((slideWidth + 16) * (repeatedSlides.length - 3)), right: 0 }}
           animate={{ x: -(activeIndex * (slideWidth + 16)) }}
-          transition={{ type: "spring", stiffness: 350, damping: 30, mass: 0.8 }}
+          transition={isJumping ? { duration: 0 } : { type: "spring", stiffness: 350, damping: 30, mass: 0.8 }}
           onDragEnd={handleDragEnd}
           className="flex gap-4 cursor-grab active:cursor-grabbing w-max"
         >
@@ -170,17 +195,13 @@ const InteractiveHeroSlider = ({
         </div>
       </div>
 
-      {/* Indicators */}
-      <div className="flex justify-center gap-2 mt-4">
-        {slides.map((_, i) => (
-          <div 
-            key={i}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              (activeIndex % slides.length) === i ? 'w-8 bg-blue-600' : 'w-2 bg-gray-300'
-            }`}
-          />
-        ))}
-      </div>
+      {/* Indicators / Dots */}
+      <SliderDots 
+        count={slides.length}
+        activeIndex={activeIndex % slides.length}
+        onDotClick={(idx) => setActiveIndex(slides.length + idx)}
+        className="mt-6"
+      />
     </section>
   );
 };

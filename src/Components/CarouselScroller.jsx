@@ -1,19 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-/**
- * CarouselScroller - A reusable horizontal scroller with navigation buttons.
- * 
- * Props:
- * @param {React.ReactNode} children - The content to scroll (a list of cards)
- * @param {string} title - Optional title for the section
- * @param {string} subtitle - Optional subtitle for the section
- * @param {string} viewAllLink - Optional link for "View All" button
- * @param {number} scrollAmount - Amount to scroll on click (default based on screen size)
- * @param {string} containerClass - Custom classes for the outer section
- * @param {string} innerClass - Custom classes for the scroller div
- * @param {React.ReactNode} icon - Optional icon for the title
- */
 const CarouselScroller = ({ 
   children, 
   title, 
@@ -22,9 +9,13 @@ const CarouselScroller = ({
   scrollAmount, 
   containerClass = "",
   innerClass = "",
-  icon
+  icon,
+  centerHeader = false,
+  autoPlay = false,
+  autoPlayInterval = 4000
 }) => {
   const scrollRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -36,15 +27,37 @@ const CarouselScroller = ({
     }
   };
 
+  // Auto-play Logic
+  useEffect(() => {
+    if (!autoPlay || isHovered) return;
+
+    const interval = setInterval(() => {
+      if (scrollRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+        if (scrollLeft + clientWidth >= scrollWidth - 10) {
+          scrollRef.current.scrollTo({ left: 0, behavior: 'auto' });
+        } else {
+          scroll('right');
+        }
+      }
+    }, autoPlayInterval);
+
+    return () => clearInterval(interval);
+  }, [autoPlay, isHovered, autoPlayInterval]);
+
   return (
-    <section className={`container mx-auto px-4 md:px-10 py-8 md:py-12 ${containerClass}`}>
+    <section 
+      className={`container mx-auto px-4 md:px-10 py-8 md:py-12 ${containerClass}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       {/* Header logic */}
       {(title || viewAllLink) && (
-        <div className="flex justify-between items-center mb-6 md:mb-10">
+        <div className={`flex ${centerHeader ? 'flex-col items-center justify-center text-center gap-4' : 'justify-between items-end md:items-center'} mb-6 md:mb-10`}>
           <div className="flex flex-col">
-            <h2 className="text-xl md:text-3xl font-black text-gray-900 tracking-tight flex items-center gap-2">
-              {title}
+            <h2 className={`text-xl md:text-3xl font-black text-gray-900 tracking-tight flex items-center gap-2 ${centerHeader ? 'justify-center' : ''}`}>
               {icon && icon}
+              <span>{title}</span>
             </h2>
             {subtitle && (
               <p className="text-gray-500 text-[10px] md:text-sm font-medium mt-1">
@@ -69,7 +82,7 @@ const CarouselScroller = ({
           {children}
         </div>
 
-        {/* Navigation Arrows - Hidden on touch, shown on hover for desktop */}
+        {/* Navigation Arrows */}
         <button 
            onClick={() => scroll('left')}
            className="absolute left-[-15px] top-[40%] -translate-y-1/2 bg-white text-gray-800 p-3 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:text-blue-600 hover:scale-110 transition-all hidden md:flex opacity-0 group-hover/scroller:opacity-100 z-20"

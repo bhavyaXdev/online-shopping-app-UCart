@@ -17,9 +17,53 @@ const ProductCard = ({
   hideCart = false, 
   hideCategory = false, 
   hideOriginalPrice = false,
-  reviewsAtBottom = false
+  reviewsAtBottom = false,
+  variant = 'default'
 }) => {
   if (!product) return null;
+
+  if (variant === 'offer') {
+    return (
+      <div className="bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col h-full">
+        {/* Padded Image Section */}
+        <div className="relative overflow-hidden bg-white h-[180px] sm:h-[200px] lg:h-[220px] w-full p-2 pb-0">
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-full object-cover object-center rounded-lg transition-transform duration-700 group-hover:scale-105"
+          />
+          {/* Badge Overlay */}
+          {(product.badge || product.rating) && (
+            <div className="absolute top-4 left-4 bg-yellow-400 text-black text-[10px] font-black px-2 py-0.5 rounded shadow-sm uppercase tracking-wider z-10 flex items-center gap-1">
+              {product.badge || (
+                <span className="flex items-center gap-1">
+                  {product.rating} <Star size={10} className="fill-black" />
+                </span>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Solid Blue Offer Band */}
+        <div className="bg-[#0099e5] text-white text-center py-2 px-2 w-full text-[11px] sm:text-[13px] font-black shadow-sm z-10 relative mt-2">
+          {product.discount || "SPECIAL DEAL"}
+        </div>
+
+        {/* Text & Price Section (Centered) */}
+        <div className="p-3 pb-4 flex flex-col flex-1 items-center justify-center text-center bg-[#f8fbfd]">
+          <h3 className="text-gray-600 font-bold text-[11px] md:text-[13px] mb-1.5 line-clamp-1 group-hover:text-brand-primary transition-colors">
+            {product.name}
+          </h3>
+          <div className="flex items-center justify-center gap-2 mt-auto">
+            <span className="text-sm md:text-base font-black text-gray-900 leading-none">{product.price}</span>
+            {product.originalPrice && !hideOriginalPrice && (
+              <span className="text-[10px] md:text-[11px] text-gray-400 line-through font-medium leading-none">{product.originalPrice}</span>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col h-full">

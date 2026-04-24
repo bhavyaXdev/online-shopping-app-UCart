@@ -21,6 +21,7 @@ const ProductCarousel = ({
   viewAllLink, 
   containerClass, 
   icon,
+  centerHeader,
   cardProps = {}
 }) => {
   if (!products || products.length === 0) return null;
@@ -32,6 +33,7 @@ const ProductCarousel = ({
       viewAllLink={viewAllLink}
       containerClass={containerClass}
       icon={icon}
+      centerHeader={centerHeader}
     >
       {products.map((product, index) => (
         <div key={product.id || index} className="snap-start shrink-0 w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px]">

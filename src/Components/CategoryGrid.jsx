@@ -14,40 +14,42 @@ import React from 'react';
 const CategoryGrid = ({ 
   categories, 
   title, 
-  containerClass = "py-6 md:py-10", 
-  gridClass = "", 
-  cardClass = "",
-  imageClass = ""
+  containerClass = "py-4 md:py-8", 
+  gridClass = "gap-x-4 gap-y-6", 
+  cardClass = "w-[90px] md:w-[100px]",
+  imageClass = "",
+  titleClass = "text-xl md:text-2xl font-black text-gray-900 tracking-tight flex items-center",
+  textClass = "text-[11px] md:text-[13px] font-medium text-gray-800 text-center leading-tight px-1 flex-1 flex items-start justify-center w-full"
 }) => {
   if (!categories || categories.length === 0) return null;
 
   return (
-    <section className={`container mx-auto px-4 md:px-10 border-b border-gray-100 ${containerClass}`}>
+    <section className={`container mx-auto px-4 md:px-10 w-full ${containerClass}`}>
       {title && (
-        <div className="flex items-center gap-2 mb-6 md:mb-8">
-          <h2 className="text-lg md:text-2xl font-black text-gray-900 tracking-tight">
+        <div className="flex items-center gap-2 mb-4">
+          <h2 className={titleClass}>
             {title}
           </h2>
         </div>
       )}
       
-      <div className="w-full overflow-x-auto no-scrollbar pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-        <div className={`grid grid-rows-2 grid-flow-col gap-4 md:gap-8 min-w-full w-max justify-between ${gridClass}`}>
+      <div className="w-full overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div className={`grid grid-rows-2 grid-flow-col pb-2 w-max justify-start ${gridClass}`}>
           {categories.map((cat, i) => (
             <div 
               key={cat.id || i} 
-              className={`flex flex-col items-center group cursor-pointer ${cardClass}`}
+              className={`group cursor-pointer flex flex-col items-center gap-2 ${cardClass}`}
             >
-              <div className={`w-[75px] h-[75px] md:w-[130px] md:h-[130px] rounded-full md:rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 group-hover:border-blue-500 group-hover:shadow-xl transition-all duration-300 relative ${imageClass}`}>
+              <div className={`w-[90px] h-[90px] md:w-[100px] md:h-[100px] ${cat.bg || 'bg-gray-50'} rounded-xl overflow-hidden flex items-center justify-center relative shadow-sm ${imageClass}`}>
                 <img 
                   src={cat.img} 
                   alt={cat.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover"
                 />
               </div>
-              <span className="mt-3 md:mt-4 text-[11px] md:text-sm font-bold text-gray-700 group-hover:text-blue-600 transition-colors uppercase tracking-wide text-center max-w-[130px]">
+              <h3 className={textClass}>
                 {cat.name}
-              </span>
+              </h3>
             </div>
           ))}
         </div>
